@@ -13,12 +13,12 @@ RSpec.describe User, type: :model do
     it 'has a valid factory' do
       expect(user).to be_valid
     end
-    it { should validate_presence_of(:first_name) }
+    it 'should validate the presence of first name' do
+       should validate_presence_of(:first_name)
+    end
     it { should validate_presence_of(:last_name) }
     it { should validate_presence_of(:email) }
-
     it { should validate_presence_of(:phone) }
-
     it { should validate_presence_of(:role) }
     it { should allow_value('user@example.com').for(:email) }
     it { should_not allow_value('not_an_email').for(:email) }
