@@ -1,3 +1,4 @@
 class Dish < ApplicationRecord
-  belongs_to :menu
+  has_many :menu
+  validates :name,:ingredients, presence: true
 end
