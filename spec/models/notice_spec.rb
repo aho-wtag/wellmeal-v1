@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Notice, type: :model do
-  let(:notice) {FactoryBot.create(:notice )}
+  let(:notice) {FactoryBot.create(:notice)}
 
   describe 'when creating a notice' do
     it 'is associated with an user' do
