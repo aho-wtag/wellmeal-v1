@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Menu, type: :model do
-  let (:user){FactoryBot.create(:user, :user)}
-  let (:dish){FactoryBot.create(:dish)}
-  let(:menu) {FactoryBot.create(:menu, user: user, dish: dish)}
+  let(:user){FactoryBot.create(:user, :user)}
+  let(:dish){FactoryBot.create(:dish)}
+  let(:menu){FactoryBot.create(:menu, user: user, dish: dish)}
   describe 'when creating ' do
 
     it 'should validate the presence of date' do
