@@ -1,0 +1,25 @@
+<h1>This is the dish index page</h1>
+
+<p>
+  <%= link_to 'create new Dish', new_dish_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Dish Name</th>
+    <th>Ingredients</th>
+
+  </tr>
+  <% @dishes.each do |dish| %>
+    <tr>
+      <td><%= dish.name %></td>
+      <td><%= dish.ingredients %></td>
+
+      <td><%=link_to'edit', edit_dish_path(dish) %></td>
+      <td><%=link_to'show', dish_path(dish) %></td>
+      <td> <%= link_to "delete", dish_path(dish), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>
+    </tr>
+
+
+  <% end %>
+</table>
