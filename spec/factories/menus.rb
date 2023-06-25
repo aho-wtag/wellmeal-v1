@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'faker'
 FactoryBot.define do
   factory :menu do
-    meal_date {Date.today}
+    meal_date { Date.today }
     association :user
     association :dish
     trait :lunch do

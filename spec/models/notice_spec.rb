@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Notice, type: :model do
-  let (:user){FactoryBot.create(:user, :user)}
-  let(:notice) {FactoryBot.create(:notice, user: user)}
+  let(:user) { FactoryBot.create(:user, :user) }
+  let(:notice) { FactoryBot.create(:notice, user:) }
 
   describe 'when creating a notice' do
     it 'is associated with an user' do
@@ -19,4 +21,4 @@ RSpec.describe Notice, type: :model do
       should validate_presence_of(:created_at)
     end
   end
-  end
+end

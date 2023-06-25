@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe MealAttendance, type: :model do
   let(:user) { FactoryBot.create(:user, :user) }
-  let(:meal_attendance){FactoryBot.create(:meal_attendance, :lunch ,user: user)}
+  let(:meal_attendance) { FactoryBot.create(:meal_attendance, :lunch, user:) }
 
   describe 'when created' do
     it 'should be associated with an user' do
@@ -20,7 +22,5 @@ RSpec.describe MealAttendance, type: :model do
     it 'should not allow PAST Meal date' do
       should_not allow_value(Date.yesterday).for(:meal_date)
     end
-
   end
-
 end

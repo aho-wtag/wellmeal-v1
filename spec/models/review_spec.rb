@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  let(:user){FactoryBot.create(:user, :user)}
-  let(:dish){FactoryBot.create(:dish)}
-  let(:menu){FactoryBot.create(:menu, user: user, dish: dish)}
-  let(:review){FactoryBot.create(:review,menu: menu, user:user)}
+  let(:user) { FactoryBot.create(:user, :user) }
+  let(:dish) { FactoryBot.create(:dish) }
+  let(:menu) { FactoryBot.create(:menu, user:, dish:) }
+  let(:review) { FactoryBot.create(:review, menu:, user:) }
 
   describe 'when creating' do
     it 'should be associated with an user' do

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :meal_attendance do
-    meal_date{Faker::Time.between(from: Date.today, to: Date.today + 1.year)}
+    meal_date { Faker::Time.between(from: Date.today, to: Date.today + 1.year) }
     association :user
 
     trait :lunch do
