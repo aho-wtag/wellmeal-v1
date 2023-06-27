@@ -1,0 +1,45 @@
+<%= form_with model: @menu do |form| %>
+  <% if @menu.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+
+      <ul>
+        <% @menu.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <p>
+    <%= form.label :meal_date %><br>
+    <%= form.date_field :meal_date %>
+  </p>
+<!--  <p>-->
+    <%#= form.collection_select :dish_id, @dishes, :name %>
+<!--  </p>-->
+  <div>
+    <%= form.label :dishes %>
+    <%= form.collection_select :dish_id, @dishes, :id, :name, {}, { multiple: false } %>
+  </div>
+
+  <div>
+    <%= form.label :users %>
+    <%= form.collection_select :user_id, @users, :id, :first_name, {}, { multiple: false } %>
+  </div>
+
+
+  <p>
+    <%= form.select :meal_type, options_for_select(['lunch', 'snack'], @menu.meal_type) %>
+  </p>
+
+
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<br>
+<%= link_to "menu index", menus_path %>
