@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class DishesController < ApplicationController
-    before_action :find_dish_by_id, only: %i[edit update show destroy]
+  before_action :find_dish_by_id, only: %i[edit update show destroy]
   def index
-    @dishes=Dish.all
+    @dishes = Dish.all
   end
 
   def new
-    @dish=Dish.new
+    @dish = Dish.new
   end
 
   def create
@@ -17,12 +19,9 @@ class DishesController < ApplicationController
     end
   end
 
-  def show
+  def show; end
 
-  end
-
-  def edit
-  end
+  def edit; end
 
   def update
     if @dish.update(dish_params)
@@ -37,7 +36,6 @@ class DishesController < ApplicationController
     flash[:notice] = 'Dish was successfully deleted'
     redirect_to dishes_path, status: :see_other
   end
-
 
   private
 
