@@ -43,6 +43,6 @@ class MealAttendancesController < ApplicationController
   end
 
   def find_attendance_by_id
-    @dish = MealAttendance.find(params[:id])
+    @MealAttendance = MealAttendance.find(params[:id])
   end
 end
