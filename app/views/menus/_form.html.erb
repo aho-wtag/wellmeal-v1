@@ -21,7 +21,8 @@
 <!--  </p>-->
   <div>
     <%= form.label :dishes %>
-    <%= form.collection_select :dish_id, @dishes, :id, :name, {}, { multiple: false } %>
+    <%#= form.collection_select :dish_id, @dishes, :id, :name, {}, { multiple: true } %>
+    <%= form.collection_check_boxes :dish_ids, @dishes, :id, :name %>
   </div>
 
   <div>

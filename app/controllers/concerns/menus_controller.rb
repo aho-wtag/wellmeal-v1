@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class MenusController < ApplicationController
   before_action :find_menu_by_id, only: %i[edit update show destroy]
@@ -42,7 +41,7 @@ class MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:meal_type, :meal_date, :dish_id, :user_id)
+    params.require(:menu).permit(:meal_type, :meal_date, :user_id , dish_ids: [])
   end
 
   def find_menu_by_id

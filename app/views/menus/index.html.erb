@@ -10,7 +10,6 @@
     <th>Date</th>
     <th>Meal Type</th>
     <th>Item Name</th>
-    <th>Item Ingredients</th>
     <th>Added By</th>
     <th>Edit</th>
     <th>view</th>
@@ -21,8 +20,14 @@
       <td><%= menu.id %></td>
       <td><%= menu.meal_date %></td>
       <td><%= menu.meal_type %></td>
-      <td><%= menu.dish.name %></td>
-      <td><%= menu.dish.ingredients %></td>
+<!--      <td><%#= menu.dish %></td>-->
+      <td>
+        <ul>
+          <% menu.dish.each do |d| %>
+            <li><%= d.name %></li>
+          <% end %>
+        </ul>
+      </td>
       <td><%= menu.user.first_name %></td>
       <td><%=link_to'edit', edit_menu_path(menu) %></td>
       <td><%=link_to'show', menu_path(menu) %></td>
