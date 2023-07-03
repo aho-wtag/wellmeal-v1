@@ -46,5 +46,7 @@ class MenusController < ApplicationController
 
   def find_menu_by_id
     @menu = Menu.find(params[:id])
+    @dishes = Dish.all
+    @users = User.all
   end
 end
