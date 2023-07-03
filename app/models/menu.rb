@@ -3,8 +3,8 @@
 class Menu < ApplicationRecord
   belongs_to :user
   has_one :review
-  belongs_to :dish
+  has_and_belongs_to_many :dish
 
   enum meal_type: { lunch: 0, snack: 1 }
-  validates :user_id, :dish_id, :meal_date, presence: true
+  validates  :meal_date, :meal_type, presence: true
 end
