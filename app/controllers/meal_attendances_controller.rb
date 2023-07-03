@@ -6,11 +6,12 @@ class MealAttendancesController < ApplicationController
 
   def new
     @MealAttendance = MealAttendance.new
+    @users = User.all
   end
 
   def create
-    @MealAttendance = MealAttendance.new(MealAttendance_params)
-    if @dish.save
+    @MealAttendance = MealAttendance.new(mealAttendance_params)
+    if @MealAttendance.save
       redirect_to MealAttendances_path(@MealAttendance), notice: 'Successfully created'
     else
       render :index, status: :unprocessable_entity
@@ -22,7 +23,7 @@ class MealAttendancesController < ApplicationController
   def edit; end
 
   def update
-    if @MealAttendance.update(MealAttendance_params)
+    if @MealAttendance.update(mealAttendance_params)
       redirect_to MealAttendances_path(@MealAttendance), status: :see_other
     else
       render :edit, status: :unprocessable_entity
@@ -37,7 +38,7 @@ class MealAttendancesController < ApplicationController
 
   private
 
-  def MealAttendance_params
+  def mealAttendance_params
     params.require(:MealAttendance).permit(:meal_type, :meal_date, :user_id)
   end
 

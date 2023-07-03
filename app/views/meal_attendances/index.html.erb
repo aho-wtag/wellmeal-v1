@@ -1,0 +1,26 @@
+<h1>This is the menu index page</h1>
+
+<p>
+  <%= link_to 'give food attendance', new_meal_attendance_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Menu ID</th>
+    <th>Date</th>
+
+  </tr>
+  <% @MealAttendances.each do |meal| %>
+    <tr>
+      <td><%= meal.id %></td>
+      <td><%= meal.meal_date %></td>
+      <td><%= meal.meal_type %></td>
+
+
+
+<!--      <td> <%#= link_to "delete", menu_path(meal), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>-->
+    </tr>
+
+
+  <% end %>
+</table>
