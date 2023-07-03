@@ -1,2 +1,3 @@
-<h1>Dishes#show</h1>
-<p>Find me in app/views/dishes/show.html.erb</p>
+<h1> <%= @dish.name %></h1>
+<p><b> Ingredients:</b> <%=@dish.ingredients %></p>
+<%= link_to "dish index", dishes_path %>

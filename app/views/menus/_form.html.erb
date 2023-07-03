@@ -16,12 +16,9 @@
     <%= form.label :meal_date %><br>
     <%= form.date_field :meal_date %>
   </p>
-<!--  <p>-->
-    <%#= form.collection_select :dish_id, @dishes, :name %>
-<!--  </p>-->
+
   <div>
     <%= form.label :dishes %>
-    <%#= form.collection_select :dish_id, @dishes, :id, :name, {}, { multiple: true } %>
     <%= form.collection_check_boxes :dish_ids, @dishes, :id, :name %>
   </div>
 

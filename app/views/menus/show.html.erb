@@ -1,0 +1,8 @@
+<h1> <%= @menu.meal_date %></h1>
+<p><b> Meal Type: </b> <%=@menu.meal_type %></p>
+<ul>
+  <% @menu.dish.each do |d| %>
+    <li><%= d.name %></li>
+  <% end %>
+</ul>
+<%= link_to "Menu index", menus_path %>
