@@ -3,7 +3,7 @@
 class CreatePreferences < ActiveRecord::Migration[7.0]
   def change
     create_table :preferences do |t|
-      t.string :restricted_food
+      t.string :restricted_food, null: false
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryBot.create(:user, :user) }
+  let(:user) { FactoryBot.create(:user, :admin) }
 
   describe 'when creating a user' do
     it 'has a valid factory' do

@@ -2,5 +2,5 @@
 
 class Preference < ApplicationRecord
   belongs_to :user
-  validates :restricted_food, :user_id, presence: true
+  validates :restricted_food, presence: true
 end

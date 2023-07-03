@@ -6,7 +6,7 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
-    phone { Faker::Number.leading_zero_number(digits: 11) }
+    phone { '+8801751031760' }
 
     trait :admin do
       role { 1 }

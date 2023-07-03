@@ -136,6 +136,10 @@ GEM
     nokogiri (1.15.2-x86_64-darwin)
       racc (~> 1.4)
     pg (1.5.3)
+    phony (2.20.3)
+    phony_rails (0.15.0)
+      activesupport (>= 3.0)
+      phony (>= 2.18.12)
     public_suffix (5.0.1)
     puma (5.6.6)
       nio4r (~> 2.0)
@@ -245,6 +249,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   pg (~> 1.1)
+  phony_rails
   puma (~> 5.0)
   rails (~> 7.0.5)
   rspec-rails (~> 6.0.0)
