@@ -12,7 +12,7 @@ class MealAttendancesController < ApplicationController
   def create
     @MealAttendance = MealAttendance.new(mealAttendance_params)
     if @MealAttendance.save
-      redirect_to MealAttendances_path(@MealAttendance), notice: 'Successfully created'
+      redirect_to meal_attendances_path, notice: 'Successfully created'
     else
       render :index, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class MealAttendancesController < ApplicationController
 
   def update
     if @MealAttendance.update(mealAttendance_params)
-      redirect_to MealAttendances_path(@MealAttendance), status: :see_other
+      redirect_to meal_attendances_path(@MealAttendances), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,7 +39,7 @@ class MealAttendancesController < ApplicationController
   private
 
   def mealAttendance_params
-    params.require(:MealAttendance).permit(:meal_type, :meal_date, :user_id)
+    params.require(:meal_attendance).permit(:meal_type, :meal_date, :user_id)
   end
 
   def find_attendance_by_id
