@@ -1,0 +1,35 @@
+<%= form_with model: @review do |form| %>
+  <% if @review.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @review.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <p>
+    <%= form.select :rating, options_for_select(1..5), prompt: 'Select a rating' %>
+  </p>
+  <p>
+    <%= form.label :review_body %><br>
+    <%= form.text_field :review_body %>
+    <%= form.hidden_field :menu_id, value: params[:format] %>
+
+  </p>
+
+  <div>
+    <%= form.label :users %>
+    <%= form.collection_select :user_id, @users, :id, :first_name, {}, { multiple: false } %>
+  </div>
+
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

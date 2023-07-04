@@ -5,4 +5,18 @@
     <li><%= d.name %></li>
   <% end %>
 </ul>
+
+<h3>Reviews</h3>
+<hr>
+<% @reviews.each do |review| %>
+  <p> <%=review.user.first_name %> saying</p>
+  <p> <%=review.review_body %> </p>
+  <p>Rating: <%=  review.rating %> </p>
+
+  <hr>
+
+<% end %>
+
+
 <%= link_to "Menu index", menus_path %>
+<%= link_to "Write a Review", new_review_path(@menu.id) %>

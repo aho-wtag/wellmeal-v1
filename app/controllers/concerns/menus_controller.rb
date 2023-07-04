@@ -20,7 +20,9 @@ class MenusController < ApplicationController
     end
   end
 
-  def show; end
+  def show;
+    @reviews = Review.where(menu_id: params[:id])
+  end
 
   def edit; end
 
