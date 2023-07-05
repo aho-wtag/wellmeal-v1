@@ -1,5 +1,4 @@
 
-
 require 'faker'
 FactoryBot.define do
   factory :menu do
