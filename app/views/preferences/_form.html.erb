@@ -1,0 +1,29 @@
+<%= form_with model: @preference do |form| %>
+  <% if @preference.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@preference.errors.count, "error") %> prohibited this menu from being saved:</h2>
+
+      <ul>
+        <% @preference.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <p>
+    <%= form.label :restricted_food %><br>
+    <%= form.text_field :restricted_food %>
+  </p>
+
+  <div>
+    <%= form.label :users %>
+    <%= form.collection_select :user_id, @users, :id, :first_name, {}, { multiple: false } %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<br>
