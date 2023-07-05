@@ -1,10 +1,10 @@
 
 class User < ApplicationRecord
-  has_many :preferences
-  has_many :menus
-  has_one :review, through: :menus
-  has_many :meal_attendances
-  has_many :notices
+  has_many :preferences, dependent: :destroy
+  has_many :menus, dependent: :destroy
+  has_one :review, through: :menus, dependent: :destroy
+  has_many :meal_attendances, dependent: :destroy
+  has_many :notices, dependent: :destroy
 
   enum role: { user: 0, admin: 1 }
   validates :email, :phone, :role, presence: true
