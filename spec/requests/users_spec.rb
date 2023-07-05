@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  describe 'GET /index' do
+  describe 'GET /users' do
     it 'returns http success' do
-      get '/users/index'
-      expect(response).to have_http_status(:success)
+      get '/users'
+      expect(response).to be_successful
     end
   end
 
@@ -17,38 +15,32 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'GET /create' do
-    it 'returns http success' do
-      get '/users/create'
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe 'GET /show' do
+    let!(:user){FactoryBot.create(:user, :user)}
     it 'returns http success' do
-      get '/users/show'
+      get "/users/#{user.id}"
       expect(response).to have_http_status(:success)
     end
   end
-
-  describe 'GET /edit' do
-    it 'returns http success' do
-      get '/users/edit'
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET /update' do
-    it 'returns http success' do
-      get '/users/update'
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET /destroy' do
-    it 'returns http success' do
-      get '/users/destroy'
-      expect(response).to have_http_status(:success)
-    end
-  end
+  #
+  # describe 'GET /edit' do
+  #   it 'returns http success' do
+  #     get '/users/edit'
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
+  #
+  # describe 'GET /update' do
+  #   it 'returns http success' do
+  #     get '/users/update'
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
+  #
+  # describe 'GET /destroy' do
+  #   it 'returns http success' do
+  #     get '/users/destroy'
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
 end

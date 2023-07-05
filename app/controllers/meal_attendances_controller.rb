@@ -14,7 +14,7 @@ class MealAttendancesController < ApplicationController
     if @MealAttendance.save
       redirect_to meal_attendances_path, notice: 'Successfully created'
     else
-      render :index, status: :unprocessable_entity
+      redirect_to meal_attendances_path, notice: 'NOT Successfully created'
     end
   end
 
