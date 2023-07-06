@@ -85,7 +85,6 @@ RSpec.describe 'Users', type: :request do
         expect do
           post '/users', params: invalid_params
         end.to_not change(User, :count)
-
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
