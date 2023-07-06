@@ -1,17 +1,18 @@
+
 require 'rails_helper'
 
-RSpec.describe 'Dishes', type: :request do
-  let!(:dish){FactoryBot.create(:dish)}
+RSpec.describe 'Notices', type: :request do
+  let!(:notice){FactoryBot.create(:notice)}
   describe 'GET /index' do
     it 'returns http success' do
-      get '/dishes'
+      get '/notices'
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'GET /new' do
     it 'returns http success' do
-      get '/dishes/new'
+      get '/notices/new'
       expect(response).to have_http_status(:success)
     end
   end
@@ -19,14 +20,14 @@ RSpec.describe 'Dishes', type: :request do
 
   describe 'GET /show' do
     it 'returns http success' do
-      get "/dishes/#{dish.id}"
+      get "/notices/#{notice.id}"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'GET /edit' do
     it 'returns http success' do
-      get "/dishes/#{dish.id}/edit"
+      get "/notices/#{notice.id}/edit"
       expect(response).to have_http_status(:success)
     end
   end
@@ -34,8 +35,8 @@ RSpec.describe 'Dishes', type: :request do
   describe 'GET /destroy' do
     it 'returns http success' do
       expect do
-        delete "/dishes/#{dish.id}"
-      end.to change(Dish, :count).by(-1)
+        delete "/notices/#{notice.id}"
+      end.to change(Notice, :count).by(-1)
     end
   end
 end
