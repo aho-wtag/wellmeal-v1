@@ -12,7 +12,7 @@
   <p> <%=review.user.first_name %> saying</p>
   <p> <%=review.review_body %> </p>
   <p>Rating: <%=  review.rating %> </p>
-
+  <%= link_to "delete", review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
   <hr>
 
 <% end %>

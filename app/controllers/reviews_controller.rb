@@ -1,8 +1,4 @@
 class ReviewsController < ApplicationController
-
-  before_action :find_attendance_by_id, only: %i[destroy]
-
-
   def new
     @review = Review.new
     @users = User.all
@@ -19,6 +15,7 @@ class ReviewsController < ApplicationController
 
 
   def destroy
+    @review = Review.find(params[:id])
     @review.destroy
     flash[:notice] = 'Review was successfully deleted'
     redirect_to  menus_path, status: :see_other
@@ -30,8 +27,5 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:review_body, :rating, :user_id, :menu_id)
   end
 
-  def find_attendance_by_id
-    @review = Review.find(params[:id])
-  end
 
 end
