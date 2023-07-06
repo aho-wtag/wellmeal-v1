@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Review, type: :model do
   let(:user) { FactoryBot.create(:user, :user) }
   let(:dish) { FactoryBot.create(:dish) }
-  let(:menu) { FactoryBot.create(:menu, user:, dish:) }
+  let(:menu) { FactoryBot.create(:menu, :lunch)}
   let(:review) { FactoryBot.create(:review, menu:, user:) }
 
   describe 'when creating' do
@@ -13,7 +13,7 @@ RSpec.describe Review, type: :model do
       expect(review.user).to be_instance_of(User)
     end
 
-    it 'should be associated with an user' do
+    it 'should be associated with an Menu' do
       expect(review.menu).to be_instance_of(Menu)
     end
 
