@@ -31,3 +31,4 @@
 
 en:
   hello: "Hello world"
+  future_date: "must be a future date"

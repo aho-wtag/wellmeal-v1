@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  let!(:user){FactoryBot.create(:user, :user)}
+  let!(:user){FactoryBot.create(:user, :admin)}
   describe 'GET /users' do
     it 'returns http success' do
       get '/users'

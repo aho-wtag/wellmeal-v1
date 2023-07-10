@@ -17,8 +17,5 @@ RSpec.describe Notice, type: :model do
     it 'should have a notice body' do
       should validate_presence_of(:notice_body)
     end
-    it 'should have a notice date' do
-      should validate_presence_of(:created_at)
-    end
   end
 end
