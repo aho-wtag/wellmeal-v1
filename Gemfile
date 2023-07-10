@@ -53,6 +53,7 @@ gem 'factory_bot_rails'
 gem 'faker'
 gem 'phony_rails'
 gem 'rails-controller-testing'
+gem 'devise'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
