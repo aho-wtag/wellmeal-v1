@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 class DishesController < ApplicationController
   before_action :find_dish_by_id, only: %i[edit update show destroy]
