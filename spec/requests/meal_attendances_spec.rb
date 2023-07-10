@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 
 require 'rails_helper'
 
 RSpec.describe 'MealAttendances', type: :request do
-  let!(:meal_attendance){FactoryBot.create(:meal_attendance,:lunch)}
+  let!(:meal_attendance) { FactoryBot.create(:meal_attendance, :lunch) }
   describe 'GET /index' do
     it 'returns http success' do
       get '/meal_attendances'

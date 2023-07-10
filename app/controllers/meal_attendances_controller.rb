@@ -1,3 +1,5 @@
+
+
 class MealAttendancesController < ApplicationController
   before_action :find_attendance_by_id, only: %i[edit update show destroy]
   def index
@@ -33,7 +35,7 @@ class MealAttendancesController < ApplicationController
   def destroy
     @MealAttendance.destroy
     flash[:notice] = 'MealAttendance was successfully deleted'
-    redirect_to  meal_attendances_path, status: :see_other
+    redirect_to meal_attendances_path, status: :see_other
   end
 
   private

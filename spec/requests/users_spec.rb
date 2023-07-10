@@ -1,7 +1,9 @@
+
+
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  let!(:user){FactoryBot.create(:user, :admin)}
+  let!(:user) { FactoryBot.create(:user, :admin) }
   describe 'GET /users' do
     it 'returns http success' do
       get '/users'
@@ -52,7 +54,7 @@ RSpec.describe 'Users', type: :request do
           last_name: 'Hossain',
           email: 'ar@mail.com',
           phone: '+8801965555555',
-        role: 'user'
+          role: 'user'
         }
       }
     end
@@ -109,6 +111,4 @@ RSpec.describe 'Users', type: :request do
       expect(response).to have_http_status(:see_other)
     end
   end
-  end
-
-
+end

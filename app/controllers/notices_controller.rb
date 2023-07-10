@@ -1,3 +1,5 @@
+
+
 class NoticesController < ApplicationController
   before_action :find_menu_by_id, only: %i[edit update show destroy]
   def index
@@ -6,7 +8,7 @@ class NoticesController < ApplicationController
 
   def new
     @notice = Notice.new
-    @users=User.all
+    @users = User.all
   end
 
   def create

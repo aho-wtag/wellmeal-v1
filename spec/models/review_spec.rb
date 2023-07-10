@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Review, type: :model do
   let(:user) { FactoryBot.create(:user, :user) }
-  let(:menu) { FactoryBot.create(:menu, :lunch)}
+  let(:menu) { FactoryBot.create(:menu, :lunch) }
   let(:review) { FactoryBot.create(:review, menu:, user:) }
 
   describe 'when creating' do

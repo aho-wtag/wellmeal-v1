@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 
 require 'rails_helper'
 
 RSpec.describe 'Notices', type: :request do
-  let!(:notice){FactoryBot.create(:notice)}
+  let!(:notice) { FactoryBot.create(:notice) }
   describe 'GET /index' do
     it 'returns http success' do
       get '/notices'
@@ -16,7 +17,6 @@ RSpec.describe 'Notices', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 
   describe 'GET /show' do
     it 'returns http success' do

@@ -1,3 +1,5 @@
+
+
 class ReviewsController < ApplicationController
   def new
     @review = Review.new
@@ -13,12 +15,11 @@ class ReviewsController < ApplicationController
     end
   end
 
-
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
     flash[:notice] = 'Review was successfully deleted'
-    redirect_to  menus_path, status: :see_other
+    redirect_to menus_path, status: :see_other
   end
 
   private
@@ -26,6 +27,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:review_body, :rating, :user_id, :menu_id)
   end
-
-
 end

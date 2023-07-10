@@ -1,4 +1,5 @@
 
+
 class MenusController < ApplicationController
   before_action :find_menu_by_id, only: %i[edit update show destroy]
   def index
@@ -20,7 +21,7 @@ class MenusController < ApplicationController
     end
   end
 
-  def show;
+  def show
     @reviews = Review.where(menu_id: params[:id])
   end
 
@@ -43,7 +44,7 @@ class MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:meal_type, :meal_date, :user_id , dish_ids: [])
+    params.require(:menu).permit(:meal_type, :meal_date, :user_id, dish_ids: [])
   end
 
   def find_menu_by_id

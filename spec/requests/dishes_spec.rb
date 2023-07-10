@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Dishes', type: :request do
-  let!(:dish){FactoryBot.create(:dish)}
+  let!(:dish) { FactoryBot.create(:dish) }
   describe 'GET /index' do
     it 'returns http success' do
       get '/dishes'
@@ -15,7 +17,6 @@ RSpec.describe 'Dishes', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 
   describe 'GET /show' do
     it 'returns http success' do

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 
 require 'rails_helper'
 
 RSpec.describe 'Menus', type: :request do
-  let!(:menu){FactoryBot.create(:menu, :lunch)}
+  let!(:menu) { FactoryBot.create(:menu, :lunch) }
   describe 'GET /index' do
     it 'returns http success' do
       get '/menus'
@@ -16,7 +17,6 @@ RSpec.describe 'Menus', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 
   describe 'GET /show' do
     it 'returns http success' do

@@ -6,13 +6,11 @@ class MealAttendance < ApplicationRecord
   validates :meal_date, :meal_type,  presence: true
   validate :meal_date_cannot_be_past
 
-
   private
 
   def meal_date_cannot_be_past
-    if meal_date.present? && meal_date < Date.today
-      errors.add(:meal_date, t(:future_date))
-    end
-  end
+    return unless meal_date.present? && meal_date < Date.today
 
+    errors.add(:meal_date, t(:future_date))
+  end
 end

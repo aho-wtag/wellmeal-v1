@@ -1,4 +1,5 @@
 
+
 class User < ApplicationRecord
   has_many :preferences, dependent: :destroy
   has_many :menus, dependent: :destroy

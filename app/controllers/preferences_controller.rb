@@ -1,3 +1,5 @@
+
+
 class PreferencesController < ApplicationController
   before_action :find_menu_by_id, only: %i[edit update show destroy]
   def index
@@ -6,7 +8,7 @@ class PreferencesController < ApplicationController
 
   def new
     @preference = Preference.new
-    @users=User.all
+    @users = User.all
   end
 
   def create

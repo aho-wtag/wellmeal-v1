@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 
 require 'rails_helper'
 
 RSpec.describe 'Preferences', type: :request do
-  let!(:preference){FactoryBot.create(:preference)}
+  let!(:preference) { FactoryBot.create(:preference) }
   describe 'GET /index' do
     it 'returns http success' do
       get '/preferences'
@@ -16,7 +17,6 @@ RSpec.describe 'Preferences', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 
   describe 'GET /show' do
     it 'returns http success' do
