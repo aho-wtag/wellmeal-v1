@@ -2,6 +2,8 @@
 
 class MenusController < ApplicationController
   before_action :find_menu_by_id, only: %i[edit update show destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
   def index
     @menus = Menu.all
   end
@@ -14,6 +16,7 @@ class MenusController < ApplicationController
 
   def create
     @menu = Menu.new(menu_params)
+    @menu.user_id= current_user.id
     if @menu.save
       redirect_to menus_path(@menu), notice: 'Successfully created'
     else
@@ -44,7 +47,7 @@ class MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:meal_type, :meal_date, :user_id, dish_ids: [])
+    params.require(:menu).permit(:meal_type, :meal_date, dish_ids: [])
   end
 
   def find_menu_by_id

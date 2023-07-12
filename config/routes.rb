@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :notices
   resources :preferences
   resources :reviews, only: %i[new create destroy]
+  root 'menus#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
