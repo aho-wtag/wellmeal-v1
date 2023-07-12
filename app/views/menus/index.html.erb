@@ -1,9 +1,9 @@
 <h1>This is the menu index page</h1>
 
-<p>
+<%if can? :create, Menu %>
   <%= link_to 'create new menu', new_menu_path %>
-</p>
 
+<%end %>
 <h1>Today's Lunch </h1>
 <% @today_lunch_menu.each do |menu| %>
 
@@ -33,9 +33,6 @@
     <th>Meal Type</th>
     <th>Item Name</th>
     <th>Added By</th>
-    <th>Edit</th>
-    <th>view</th>
-    <th>Delete</th>
   </tr>
   <% @menus.each do |menu| %>
     <tr>
@@ -51,10 +48,14 @@
         </ul>
       </td>
       <td><%= menu.user.first_name %></td>
-      <td><%=link_to'edit', edit_menu_path(menu) %></td>
       <td><%=link_to'show', menu_path(menu) %></td>
+      <%if can? :update, Menu %>
+      <td><%=link_to'edit', edit_menu_path(menu) %></td>
+        <%end %>
+      <%if can? :destroy, Menu %>
       <td> <%= link_to "delete", menu_path(menu), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>
-    </tr>
+    <%end %>
+        </tr>
 
 
   <% end %>
