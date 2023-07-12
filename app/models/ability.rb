@@ -17,6 +17,7 @@ class Ability
       can [:create,:update, :destroy], Review, user_id: user.id
       can [:read], Review
       can [:read], Menu
+      can :read, Dish
 
     end
 
