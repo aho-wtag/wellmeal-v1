@@ -4,6 +4,28 @@
   <%= link_to 'create new menu', new_menu_path %>
 </p>
 
+<h1>Today's Lunch </h1>
+<% @today_lunch_menu.each do |menu| %>
+
+  <ul>
+    <% menu.dish.each do |d| %>
+      <li><%= d.name %></li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+<h1>Today's Snack </h1>
+<% @today_snack_menu.each do |menu| %>
+
+  <ul>
+    <% menu.dish.each do |d| %>
+      <li><%= d.name %></li>
+    <% end %>
+  </ul>
+
+<% end %>
+
 <table>
   <tr>
     <th>Menu ID</th>

@@ -6,6 +6,8 @@ class MenusController < ApplicationController
   load_and_authorize_resource
   def index
     @menus = Menu.all
+    @today_lunch_menu=Menu.where("DATE(meal_date)=? AND meal_type=?", Date.today,0)
+    @today_snack_menu=Menu.where("DATE(meal_date)=? AND meal_type=?", Date.today,1)
   end
 
   def new

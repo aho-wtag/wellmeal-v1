@@ -4,6 +4,8 @@ class MealAttendancesController < ApplicationController
   before_action :find_attendance_by_id, only: %i[edit update show destroy]
   def index
     @MealAttendances = MealAttendance.all
+    @today_lunch_count=MealAttendance.where("DATE(meal_date)=? AND meal_type=?", Date.today,0).count
+    @today_snack_count=MealAttendance.where("DATE(meal_date)=? AND meal_type=?", Date.today,1).count
   end
 
   def new
