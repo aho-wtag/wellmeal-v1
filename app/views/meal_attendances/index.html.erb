@@ -1,8 +1,14 @@
-<h1>This is the menu index page</h1>
+<h1>MEAL ATTENDANCE PAGE</h1>
 
 <p>
   <%= link_to 'give food attendance', new_meal_attendance_path %>
 </p>
+<% if can? :manage, @MealAttendances %>
+<h1>Today's Lunch </h1>
+<h2><%=MealAttendance.where("DATE(meal_date)=? AND meal_type=?", Date.today,0).count %></h2>
+
+<h1>Today's Snack </h1>
+<h2><%=MealAttendance.where("DATE(meal_date)=? AND meal_type=?", Date.today,1).count %></h2>
 
 <table>
   <tr>
@@ -21,7 +27,7 @@
 
       <td> <%= link_to "delete", meal_attendance_path(meal), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>
     </tr>
-
+<%end %>
 
   <% end %>
 </table>

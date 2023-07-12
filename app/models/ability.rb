@@ -18,6 +18,7 @@ class Ability
       can [:read], Review
       can [:read], Menu
       can :read, Dish
+      can [:create], MealAttendance
 
     end
 
