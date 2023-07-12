@@ -2,6 +2,8 @@
 
 class PreferencesController < ApplicationController
   before_action :find_menu_by_id, only: %i[edit update show destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
   def index
     @preferences = Preference.all
   end

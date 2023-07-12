@@ -2,11 +2,11 @@
 <!--<p>Find me in app/views/users/index.html.erb</p>-->
 <!--only admin can view, edit, update, delete-->
 <h1>This is the user index page</h1>
-
+<%if can? :create, User %>
 <p>
   <%= link_to 'create new user', new_user_path %>
 </p>
-
+<%end %>
 <table>
   <tr>
     <th>User ID</th>
@@ -18,6 +18,7 @@
   </tr>
   <% @users.each do |user| %>
     <tr>
+      <%if can? :read, user %>
       <td><%= user.id %></td>
       <td><%= user.first_name %></td>
       <td><%= user.last_name %></td>
@@ -26,7 +27,10 @@
       <td><%= user.role %></td>
       <td><%=link_to'edit', edit_user_path(user) %></td>
       <td><%=link_to'show', user_path(user) %></td>
+        <%end %>
+      <%if can? :destroy, User %>
       <td> <%= link_to "delete", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>
+      <%end %>
     </tr>
 
 

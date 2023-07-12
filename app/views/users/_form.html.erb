@@ -29,10 +29,11 @@
     <%= form.label :phone %><br>
     <%= form.text_field :phone %>
   </p>
-
+<%if current_user.sup_admin? %>
   <p>
-    <%= form.select :role, options_for_select(['user', 'admin'], @user.role) %>
+    <%= form.select :role, options_for_select(['user', 'admin', 'sup_admin'], @user.role) %>
   </p>
+    <%end %>
   <div class="field">
     <%= form.label :password %>
     <% if @minimum_password_length %>
