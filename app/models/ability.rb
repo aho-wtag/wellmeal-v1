@@ -10,7 +10,8 @@ class Ability
       can :manage, :all
     elsif user.admin?
       # can [:read, :update, :create], :all
-      can :manage, :all
+      can [:read, :update, :create], User
+      can :manage, [MealAttendance,Notice, Review, Menu, Dish, Preference]
     else
       can [:read, :update], User, id: user.id
       can [:create], MealAttendance
@@ -21,8 +22,6 @@ class Ability
       can :read, Dish
       can :read, Notice
       can [:create], MealAttendance
-
-
     end
 
     #   return unless user.present?
