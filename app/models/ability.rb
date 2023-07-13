@@ -13,7 +13,7 @@ class Ability
       can :manage, :all
     else
       can [:read, :update], User, id: user.id
-      can [:read, :create], MealAttendance, id: user.id
+      can [:create], MealAttendance
       can [:create,:update, :destroy], Review, user_id: user.id
       can [:read], Review
       can :manage, Preference, user_id: user.id
