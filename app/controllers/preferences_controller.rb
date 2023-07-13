@@ -15,6 +15,7 @@ class PreferencesController < ApplicationController
 
   def create
     @preference = Preference.new(preference_params)
+    @preference.user_id=current_user.id
     if @preference.save
       redirect_to preferences_path(@preference), notice: 'Successfully created'
     else
@@ -43,7 +44,7 @@ class PreferencesController < ApplicationController
   private
 
   def preference_params
-    params.require(:preference).permit(:restricted_food, :user_id)
+    params.require(:preference).permit(:restricted_food)
   end
 
   def find_menu_by_id
