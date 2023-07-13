@@ -1,8 +1,8 @@
 <h1>This is the NOTICE index page</h1>
 
-<p>
+<%if can? :manage, @notices%>
   <%= link_to 'new notice', new_notice_path %>
-</p>
+  <%end %>
 
 <table>
   <tr>
@@ -15,10 +15,10 @@
       <td><%= notice.user_id %></td>
       <td><%= notice.notice_title %></td>
       <td><%= notice.notice_body %></td>
-      <%if current_user.admin? or current_user.sup_admin?%>
-
-      <td><%=link_to'edit', edit_notice_path(notice) %></td>
       <td><%=link_to'show', notice_path(notice) %></td>
+      <%if can? :manage, notice%>
+
+        <td><%=link_to'edit', edit_notice_path(notice) %></td>
       <td> <%= link_to "delete", notice_path(notice), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>
   <%end %>
     </tr>
