@@ -15,10 +15,11 @@ class Ability
       can [:read, :update], User, id: user.id
       can [:read, :create], MealAttendance, id: user.id
       can [:create,:update, :destroy], Review, user_id: user.id
-      can :manage, Preference, user_id: user.id
       can [:read], Review
+      can :manage, Preference, user_id: user.id
       can [:read], Menu
       can :read, Dish
+      can :read, Notice
       can [:create], MealAttendance
 
 
