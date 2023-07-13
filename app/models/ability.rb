@@ -10,7 +10,8 @@ class Ability
       can :manage, :all
     elsif user.admin?
       # can [:read, :update, :create], :all
-      can [:read, :update, :create], User
+      can :manage, User
+      cannot :destroy, User, role: ['admin','sup_admin']
       can :manage, [MealAttendance,Notice, Review, Menu, Dish, Preference]
     else
       can [:read, :update], User, id: user.id
