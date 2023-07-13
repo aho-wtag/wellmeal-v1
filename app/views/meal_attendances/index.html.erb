@@ -3,7 +3,7 @@
 <p>
   <%= link_to 'give food attendance', new_meal_attendance_path %>
 </p>
-<% if can? :manage, @MealAttendances %>
+<% if current_user.admin? or current_user.sup_admin?%>
 <h1>Today's Lunch </h1>
 <h2><%=@today_lunch_count %></h2>
 
