@@ -2,10 +2,21 @@
 
 class MealAttendancesController < ApplicationController
   before_action :find_attendance_by_id, only: %i[edit update show destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
   def index
     @MealAttendances = MealAttendance.all
     @today_lunch_count=MealAttendance.where("DATE(meal_date)=? AND meal_type=?", Date.today,0).count
     @today_snack_count=MealAttendance.where("DATE(meal_date)=? AND meal_type=?", Date.today,1).count
+
+
+    @MealAttendances=MealAttendance.joins(:user).where("first_name LIKE ?", "%#{params[:search]}%") if params[:search]
+    @MealAttendances=@MealAttendances.where(meal_type: params[:category]) if params[:category] != ''
+    @MealAttendances=@MealAttendances.where(meal_date: params[:search_date]) if params[:search_date]
+    if params[:search]=='' && params[:search_date]=='' && params[:category]==''
+      @MealAttendances = MealAttendance.all
+    end
+
   end
 
   def new

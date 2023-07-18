@@ -10,6 +10,37 @@
 <h1>Today's Snack </h1>
 <h2><%=@today_snack_count %></h2>
 
+
+  <%= form_tag meal_attendances_path, method: :get do %>
+    <div class="field">
+      <%= label_tag :search, "Search by Name" %>
+      <% if params[:search] %>
+          <%= text_field_tag :search,params[:search]%>
+        <%else %>
+        <%= text_field_tag :search%>
+        <%end %>
+
+    </div>
+
+    <div class="field">
+      <%= label_tag :category, "Category" %>
+      <%= select_tag :category, options_for_select([['lunch & snack',''],["lunch", "0"], ["snack", "1"]],params[:category]) %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :search_date, "date" %>
+      <% if params[:search] %>
+        <%= date_field_tag :search_date,params[:search_date]%>
+      <%else %>
+        <%= date_field_tag :search_date %>
+      <%end %>
+
+
+      <br>
+    <%= submit_tag "Search" %>
+  <% end %>
+  </div>
+
 <table>
   <tr>
     <th>Date</th>
