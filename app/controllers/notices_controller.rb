@@ -5,7 +5,7 @@ class NoticesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   def index
-    @notices = Notice.all
+    @notices = Notice.order(created_at: :desc)
   end
 
   def new
