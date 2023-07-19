@@ -21,6 +21,11 @@
     <%= form.text_field :ingredients %>
   </p>
 
+  <div>
+    <%=form.label :image, style: "display: block" %>
+    <%= form.file_field :image %>
+  </div>
+
 
   <div>
     <%= form.submit %>

@@ -14,7 +14,11 @@
     <tr>
       <td><%= dish.name %></td>
       <td><%= dish.ingredients %></td>
-
+      <td>
+        <% if dish.image.attached? %>
+          <img src="<%= url_for(dish.image) %>" width="300" height="200">
+        <% end %>
+      </td>
       <td><%=link_to'show', dish_path(dish) %></td>
       <% if can? :destroy, dish%>
       <td><%=link_to'edit', edit_dish_path(dish) %></td>

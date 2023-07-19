@@ -42,7 +42,7 @@ class DishesController < ApplicationController
   private
 
   def dish_params
-    params.require(:dish).permit(:name, :ingredients)
+    params.require(:dish).permit(:name, :ingredients, :image)
   end
 
   def find_dish_by_id
