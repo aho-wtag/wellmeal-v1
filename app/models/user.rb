@@ -1,8 +1,9 @@
-
+require 'trimmer'
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include Trimmer
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
   has_many :preferences, dependent: :destroy
@@ -17,4 +18,5 @@ class User < ApplicationRecord
   validates :email, uniqueness: { case_sensitive: false }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates_plausible_phone :phone, presence: true
+  trimmed_fields :first_name, :last_name,:email, :phone
 end
