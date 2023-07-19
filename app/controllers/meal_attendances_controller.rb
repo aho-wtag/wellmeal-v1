@@ -16,7 +16,7 @@ class MealAttendancesController < ApplicationController
     new_query.compact!
 
     @MealAttendances=MealAttendance.where(new_query)
-    @MealAttendances=@MealAttendances.joins(:user).where("first_name LIKE ?", "%#{params[:search]}%") if params[:search].present? && params[:search]!=''
+    @MealAttendances=@MealAttendances.joins(:user).where("first_name LIKE ?", "%#{params[:search].delete(' ')}%") if params[:search].present? && params[:search]!=''
   end
 
   def new
