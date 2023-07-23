@@ -29,7 +29,7 @@
       <td><%=link_to'show', user_path(user) %></td>
         <%end %>
       <%if can? :destroy, User %>
-      <td> <%= link_to "delete", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>
+      <td> <%= link_to "delete", user_path(user), data: { method: :delete, confirm: "Are you sure?"} %> </td>
       <%end %>
     </tr>
 
