@@ -1,7 +1,7 @@
 <h1> <%= @dish.name %></h1>
 <p><b> Ingredients:</b> <%=@dish.ingredients %></p>
+<br>
 <% if @dish.image.attached? %>
   <img src="<%= url_for(@dish.image) %>" width="600" height="400">
 <% end %>
 <br>
-<%= link_to "dish index", dishes_path %>

@@ -1,7 +1,7 @@
 <h1>This is the menu index page</h1>
 
 <%if can? :create, Menu %>
-  <%= link_to 'create new menu', new_menu_path %>
+  <%= link_to 'create new menu', new_menu_path, class: "btn btn-success btn-lg" %>
 
 <%end %>
 <h1>Today's Lunch </h1>
@@ -28,7 +28,6 @@
 
 <table class="table table-striped">
   <tr>
-    <th>Menu ID</th>
     <th>Date</th>
     <th>Meal Type</th>
     <th>Item Name</th>
@@ -36,10 +35,9 @@
   </tr>
   <% @menus.each do |menu| %>
     <tr>
-      <td><%= menu.id %></td>
       <td><%= menu.meal_date %></td>
       <td><%= menu.meal_type %></td>
-<!--      <td><%#= menu.dish %></td>-->
+
       <td>
         <ul>
           <% menu.dish.each do |d| %>

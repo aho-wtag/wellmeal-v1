@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do
     redirect_to root_path
   end
+  def index
+    flash.notice = 'No page found at that address'
+    redirect_to root_path
+  end
 
   protected
 

@@ -19,7 +19,7 @@
 
       <td><%=link_to'edit', edit_preference_path(prefer) %></td>
       <td><%=link_to'show', preference_path(prefer) %></td>
-      <td> <%= link_to "delete", preference_path(prefer), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>
+      <td> <%= link_to "delete", preference_path(prefer), data: { method: :delete, confirm: "Are you sure?"} %> </td>
         <%end%>
     </tr>
 

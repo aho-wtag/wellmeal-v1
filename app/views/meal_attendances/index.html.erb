@@ -1,14 +1,19 @@
 <h1>MEAL ATTENDANCE PAGE</h1>
 
 <p>
-  <%= link_to 'give food attendance', new_meal_attendance_path %>
+  <%= link_to 'give food attendance', new_meal_attendance_path , class: "btn btn-danger btn-lg", style: "margin-left: 30px;"%>
 </p>
 <% if current_user.admin? or current_user.sup_admin?%>
-<h1>Today's Lunch </h1>
-<h2><%=@today_lunch_count %></h2>
+  <div style="margin-left: 60px">
+    <h1>Today's Lunch </h1>
+    <h2 style="margin-left: 100px"><%=@today_lunch_count %></h2>
+  </div>
 
-<h1>Today's Snack </h1>
-<h2><%=@today_snack_count %></h2>
+<div style="margin-left: 60px">
+  <h1>Today's Snack </h1>
+  <h2 style="margin-left: 100px"><%=@today_snack_count %></h2>
+</div>
+
 
 
   <%= form_tag meal_attendances_path, method: :get do %>
