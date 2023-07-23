@@ -46,12 +46,12 @@
         </ul>
       </td>
       <td><%= menu.user.first_name %></td>
-      <td><%=link_to'show', menu_path(menu) %></td>
+      <td><%=link_to'show', menu_path(menu),class: "btn btn-success" %></td>
       <%if can? :update, Menu %>
-      <td><%=link_to'edit', edit_menu_path(menu) %></td>
+      <td><%=link_to'edit', edit_menu_path(menu),class: "btn btn-warning"%></td>
         <%end %>
       <%if can? :destroy, Menu %>
-      <td> <%= link_to "delete", menu_path(menu), data: { method: :delete, confirm: "Are you sure?"} %> </td>
+      <td> <%= link_to "delete", menu_path(menu),class: "btn btn-danger", data: { method: :delete, confirm: "Are you sure?"} %> </td>
     <%end %>
         </tr>
 
