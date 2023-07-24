@@ -15,8 +15,22 @@ test:
   <<: *default
   database: wellmeal_v1_test
 
+#production:
+#  <<: *default
+#  database: wellmeal_v1_production
+#  username: wellmeal_v1
+#  password: <%#= ENV["WELLMEAL_V1_DATABASE_PASSWORD"] %>
+
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+#
+# Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
+# for a full overview on how database connection configuration can be specified.
+#
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: wellmeal_v1_production
   username: wellmeal_v1
   password: <%= ENV["WELLMEAL_V1_DATABASE_PASSWORD"] %>
