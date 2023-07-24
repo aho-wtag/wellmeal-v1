@@ -25,7 +25,7 @@ class MealAttendancesController < ApplicationController
   end
 
   def create
-    @MealAttendance = MealAttendance.new(mealAttendance_params)
+    @MealAttendance = MealAttendance.new(meal_attendance_params)
     @MealAttendance.user_id = current_user.id
     if @MealAttendance.save
       redirect_to meal_attendances_path, notice: 'Successfully created'
@@ -54,7 +54,7 @@ class MealAttendancesController < ApplicationController
 
   private
 
-  def mealAttendance_params
+  def meal_attendance_params
     params.require(:meal_attendance).permit(:meal_type, :meal_date)
   end
 
