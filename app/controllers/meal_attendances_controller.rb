@@ -28,7 +28,7 @@ class MealAttendancesController < ApplicationController
     @MealAttendance = MealAttendance.new(meal_attendance_params)
     @MealAttendance.user_id = current_user.id
     if @MealAttendance.save
-      redirect_to meal_attendances_path, notice: 'Successfully created'
+      redirect_to menus_path, notice: 'Successfully created'
     else
       redirect_to meal_attendances_path, notice: 'cant give empty date or past attendance'
     end
