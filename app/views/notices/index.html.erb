@@ -3,7 +3,7 @@
 
 <h1>Notices</h1>
 
-<%if can? :manage, @notices%>
+<%if can? :manage, Notice%>
   <%= link_to 'new notice', new_notice_path, class:"btn btn-success"  %>
   <%end %>
 
