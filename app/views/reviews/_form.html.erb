@@ -13,16 +13,16 @@
 
 
   <p>
-    <%= form.select :rating, options_for_select(1..5), prompt: 'Select a rating' %>
+    <%= form.select :rating, options_for_select(1..5), prompt: 'Select a rating'%>
   </p>
   <p>
     <%= form.label :review_body %><br>
     <%= form.text_field :review_body %>
-    <%= form.hidden_field :menu_id, value: params[:format] %>
+    <%= form.hidden_field :menu_id, value: @menu.id %>
 
   </p>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary"%>
   </div>
 <% end %>

@@ -3,10 +3,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
-  def new
-    @review = Review.new
-    @users = User.all
-  end
 
   def create
     @review = Review.new(review_params)
@@ -14,7 +10,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to menu_path(@review.menu), notice: 'Successfully created'
     else
-      render :index, status: :unprocessable_entity
+      redirect_to menu_path(@review.menu), notice: 'Please give rating and comments'
     end
   end
 

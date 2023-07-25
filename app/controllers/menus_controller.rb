@@ -13,7 +13,6 @@ class MenusController < ApplicationController
   def new
     @menu = Menu.new
     @dishes = Dish.all
-    @users = User.all
   end
 
   def create
@@ -28,6 +27,7 @@ class MenusController < ApplicationController
 
   def show
     @reviews = Review.where(menu_id: params[:id])
+    @review = Review.new
   end
 
   def edit; end
