@@ -17,7 +17,7 @@
     <%= form.date_field :meal_date %>
   </p>
   <p>
-    <%= form.select :meal_type, options_for_select(['lunch', 'snack'], @MealAttendance.meal_type) %>
+    <%= form.select :meal_type, options_for_select(['lunch', 'snack'], @MealAttendance.meal_type)%>
   </p>
 
   <div>
@@ -25,4 +25,3 @@
   </div>
 <% end %>
 <br>
-<%= link_to "meal Attendances", meal_attendances_path(@MealAttendances) %>
