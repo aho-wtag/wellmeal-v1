@@ -14,9 +14,12 @@
 <%= render 'layouts/navigation' %>
 <% end %>
 
+<%if notice.instance_of? String%>
 <p class="alert alert-danger"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
+<%end %>
+<%if alert.instance_of? String%>
+<p class="alert alert-success"><%= alert %></p>
+<%end %>
 <%= yield %>
 </body>
 
