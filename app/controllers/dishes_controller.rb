@@ -35,7 +35,7 @@ class DishesController < ApplicationController
 
   def destroy
     @dish.destroy
-    flash[:notice] = 'Dish was successfully deleted'
+    flash[:notice] = 'successfully deleted'
     redirect_to dishes_path, status: :see_other
   end
 

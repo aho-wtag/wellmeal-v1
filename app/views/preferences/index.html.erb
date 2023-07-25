@@ -1,28 +1,32 @@
-<h1>This is the Preference index page</h1>
+<div style="margin: 50px;">
+<h1>Preference index</h1>
 
 <p>
-  <%= link_to 'new preference', new_preference_path %>
+  <%= link_to 'new preference', new_preference_path, class:"btn btn-primary" %>
 </p>
 
 <table class="table table-striped">
   <tr>
     <th>User ID</th>
+    <th>First Name</th>
     <th>Restricted Food</th>
 
   </tr>
   <% @preferences.each do |prefer| %>
     <tr>
       <%if can? :manage, prefer  %>
-      <td><%= prefer.user_id %></td>
+      <td><%= prefer.user.id %></td>
+      <td><%= prefer.user.first_name %></td>
       <td><%= prefer.restricted_food %></td>
 
 
-      <td><%=link_to'edit', edit_preference_path(prefer) %></td>
-      <td><%=link_to'show', preference_path(prefer) %></td>
-      <td> <%= link_to "delete", preference_path(prefer), data: { method: :delete, confirm: "Are you sure?"} %> </td>
+      <td><%=link_to'edit', edit_preference_path(prefer), class:"btn btn-warning" %></td>
+      <td><%=link_to'show', preference_path(prefer), class:"btn btn-success"%></td>
+      <td> <%= link_to "delete", preference_path(prefer), class:"btn btn-danger",  data: { method: :delete, confirm: "Are you sure?"} %> </td>
         <%end%>
     </tr>
 
 
   <% end %>
 </table>
+</div>
