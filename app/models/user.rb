@@ -3,7 +3,6 @@ require 'trimmer'
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  include Trimmer
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
   has_many :preferences, dependent: :destroy
