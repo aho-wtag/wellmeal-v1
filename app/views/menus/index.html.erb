@@ -6,57 +6,13 @@
 
 <%end %>
 <h1>Today's Lunch </h1>
-<% @today_lunch_menu.each do |menu| %>
-
-  <ul>
-    <% menu.dish.each do |d| %>
-      <li><%= d.name %></li>
-    <% end %>
-  </ul>
-
-<% end %>
+  <%= render 'menulist', menulist: @today_lunch_menu%>
 
 <h1>Today's Snack </h1>
-<% @today_snack_menu.each do |menu| %>
+  <%= render 'menulist', menulist: @today_snack_menu%>
 
-  <ul>
-    <% menu.dish.each do |d| %>
-      <li><%= d.name %></li>
-    <% end %>
-  </ul>
-
-<% end %>
-
-<table class="table table-striped">
-  <tr>
-    <th>Date</th>
-    <th>Meal Type</th>
-    <th>Item Name</th>
-    <th>Added By</th>
-  </tr>
-  <% @menus.each do |menu| %>
-    <tr>
-      <td><%= menu.meal_date %></td>
-      <td><%= menu.meal_type %></td>
-
-      <td>
-        <ul>
-          <% menu.dish.each do |d| %>
-            <li><%= d.name %></li>
-          <% end %>
-        </ul>
-      </td>
-      <td><%= menu.user.first_name %></td>
-      <td><%=link_to'show', menu_path(menu),class: "btn btn-success" %></td>
-      <%if can? :update, Menu %>
-      <td><%=link_to'edit', edit_menu_path(menu),class: "btn btn-warning"%></td>
-        <%end %>
-      <%if can? :destroy, Menu %>
-      <td> <%= link_to "delete", menu_path(menu),class: "btn btn-danger", data: { method: :delete, confirm: "Are you sure?"} %> </td>
+<%if current_user.admin? or current_user.sup_admin? %>
+<h1>All Menu</h1>
+  <%= render 'menulist', menulist: @menus%>
     <%end %>
-        </tr>
-
-
-  <% end %>
-</table>
 </div>
