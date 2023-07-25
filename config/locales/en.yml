@@ -32,3 +32,9 @@
 en:
   hello: "Hello world"
   future_date: "must be a future date"
+  deleted: "successfully deleted"
+  created: "Successfully created"
+  no_review: "Please give rating and comments"
+  invalid_attendance: "cant give empty date or past attendance"
+  no_access: "Access Denied"
+  not_found: "No page found at that address"

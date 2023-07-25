@@ -8,16 +8,16 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id=current_user.id
     if @review.save
-      redirect_to menu_path(@review.menu), notice: 'Successfully created'
+      redirect_to menu_path(@review.menu), t(:created)
     else
-      redirect_to menu_path(@review.menu), notice: 'Please give rating and comments'
+      redirect_to menu_path(@review.menu), notice: t(:no_review)
     end
   end
 
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    flash[:notice] = 'Review was successfully deleted'
+    flash[:notice] = t(:deleted)
     redirect_to menu_path(@review.menu), status: :see_other
   end
 

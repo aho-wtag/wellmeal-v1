@@ -17,7 +17,7 @@ class NoticesController < ApplicationController
     @notice = Notice.new(notice_params)
     @notice.user_id=current_user.id
     if @notice.save
-      redirect_to notices_path(@notice), notice: 'Successfully created'
+      redirect_to notices_path(@notice), notice: t(:created)
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class NoticesController < ApplicationController
 
   def destroy
     @notice.destroy
-    flash[:notice] = 'Notice was successfully deleted'
+    flash[:notice] = t(:deleted)
     redirect_to notices_path, status: :see_other
   end
 

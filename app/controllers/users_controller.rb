@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to users_path(@user), notice: 'Successfully created account'
+      redirect_to users_path(@user), notice: t(:created)
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    flash[:notice] = 'User was successfully deleted'
+    flash[:notice] = t(:deleted)
     redirect_to users_path, status: :see_other
   end
 

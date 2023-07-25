@@ -17,7 +17,7 @@ class PreferencesController < ApplicationController
     @preference = Preference.new(preference_params)
     @preference.user_id=current_user.id
     if @preference.save
-      redirect_to preferences_path(@preference), notice: 'Successfully created'
+      redirect_to preferences_path(@preference), notice: t(:created)
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class PreferencesController < ApplicationController
 
   def destroy
     @preference.destroy
-    flash[:notice] = 'Dish was successfully deleted'
+    flash[:notice] = t(:deleted)
     redirect_to preferences_path, status: :see_other
   end
 

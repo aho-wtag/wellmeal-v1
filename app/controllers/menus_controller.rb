@@ -19,7 +19,7 @@ class MenusController < ApplicationController
     @menu = Menu.new(menu_params)
     @menu.user_id= current_user.id
     if @menu.save
-      redirect_to menus_path(@menu), notice: 'Successfully created'
+      redirect_to menus_path(@menu), notice: t(:created)
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class MenusController < ApplicationController
 
   def destroy
     @menu.destroy
-    flash[:notice] = 'Dish was successfully deleted'
+    flash[:notice] = t(:deleted)
     redirect_to menus_path, status: :see_other
   end
 

@@ -15,7 +15,7 @@ class DishesController < ApplicationController
   def create
     @dish = Dish.new(dish_params)
     if @dish.save
-      redirect_to dishes_path(@dish), notice: 'Successfully created'
+      redirect_to dishes_path(@dish), notice: t(:created)
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class DishesController < ApplicationController
 
   def destroy
     @dish.destroy
-    flash[:notice] = 'successfully deleted'
+    flash[:notice] = t(:deleted)
     redirect_to dishes_path, status: :see_other
   end
 
