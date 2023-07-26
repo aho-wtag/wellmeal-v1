@@ -4,6 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Menus', type: :request do
   let!(:menu) { FactoryBot.create(:menu, :lunch) }
+  let!(:user) { FactoryBot.create(:user, :admin) }
+  before(:each) do
+    sign_in(user)
+  end
   describe 'GET /index' do
     it 'returns http success' do
       get '/menus'
