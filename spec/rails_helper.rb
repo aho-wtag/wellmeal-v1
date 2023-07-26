@@ -68,4 +68,6 @@ RSpec.configure do |config|
 
   config.include(Shoulda::Matchers::ActiveModel, type: :model)
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+  config.infer_spec_type_from_file_location!
+  config.include Devise::Test::IntegrationHelpers, type: :request
 end

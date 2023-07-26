@@ -4,6 +4,24 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
   let!(:user) { FactoryBot.create(:user, :admin) }
+  before(:each) do
+    sign_in(user)
+  end
+
+  describe 'POST /users/sign_in' do
+    it "signs user in and out" do
+      # sign_in user
+      get root_path
+      expect(response).to render_template(:index)
+
+      sign_out user
+      get root_path
+      expect(response).not_to render_template(:index)
+    end
+  end
+
+
+
   describe 'GET /users' do
     it 'returns http success' do
       get '/users'
@@ -47,18 +65,8 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'POST /user' do
-    let!(:valid_params) do
-      {
-        user: {
-          first_name: 'Arman',
-          last_name: 'Hossain',
-          email: 'ar@mail.com',
-          phone: '+8801965555555',
-          role: 'user'
-        }
-      }
-    end
-    let!(:invalid_params) do
+    let(:valid_params) { { user:  FactoryBot.attributes_for(:user) }  }
+    let(:invalid_params) do
       {
         user: {
           first_name: 'Arman',
