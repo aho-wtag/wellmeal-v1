@@ -1,4 +1,3 @@
-
 module ReviewsHelper
   def display_star_rating(rating)
     # Assuming you have a star emoji representation like '⭐️'
