@@ -40,3 +40,4 @@ en:
   not_found: "No page found at that address"
   updated: "Successfully updated"
   missing_field: "Please fill all the fields"
+  duplicate_menu: "Menu already created for today"

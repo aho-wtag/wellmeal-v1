@@ -17,7 +17,11 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(menu_params)
     @menu.user_id= current_user.id
-    if @menu.save
+
+    if menu_already_exists?
+      # flash[:alert] = 'Menu with the same meal type and date already exists.'
+      redirect_to new_menu_path, notice: t(:duplicate_menu)
+    elsif  @menu.save
       redirect_to menus_path(@menu), notice: t(:created)
     else
       redirect_to new_menu_path, notice: t(:missing_field)
@@ -54,5 +58,10 @@ class MenusController < ApplicationController
   def find_menu_by_id
     @menu = Menu.find(params[:id])
     @dishes = Dish.all
+  end
+
+  def menu_already_exists?
+    existing_menu = Menu.find_by(meal_type: @menu.meal_type, meal_date: @menu.meal_date)
+    existing_menu.present? && existing_menu != @menu
   end
 end
