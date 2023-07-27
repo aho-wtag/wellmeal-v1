@@ -5,8 +5,8 @@ class MealAttendancesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   def index
-    @today_lunch_count=MealAttendance.where("DATE(meal_date)=? AND meal_type=?", Date.today,0).count
-    @today_snack_count=MealAttendance.where("DATE(meal_date)=? AND meal_type=?", Date.today,1).count
+    @today_lunch_count=MealAttendance.where("DATE(meal_date)=? AND meal_type=?", Date.today,0).distinct.count('user_id')
+    @today_snack_count=MealAttendance.where("DATE(meal_date)=? AND meal_type=?", Date.today,1).distinct.count('user_id')
 
     new_query={}
     new_query.merge!(meal_type: params[:category]) if params[:category].present? && params[:category]!=''
