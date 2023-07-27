@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id=current_user.id
     if @review.save
-      redirect_to menu_path(@review.menu), t(:created)
+      redirect_to menu_path(@review.menu), notice: t(:created)
     else
       redirect_to menu_path(@review.menu), notice: t(:no_review)
     end
