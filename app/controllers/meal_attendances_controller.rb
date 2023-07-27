@@ -27,7 +27,10 @@ class MealAttendancesController < ApplicationController
     @MealAttendance = MealAttendance.new(meal_attendance_params)
     @MealAttendance.user_id = current_user.id
     @MealAttendance.meal_date= Date.today
-    if @MealAttendance.save
+    user_attendance = MealAttendance.where(user_id: current_user.id, meal_type: @MealAttendance.meal_type, meal_date: Date.today).exists?
+    if user_attendance
+      redirect_to meal_attendances_path, notice: t(:duplicate_attendance)
+    elsif @MealAttendance.save
       redirect_to menus_path, notice: t(:created)
     else
       redirect_to meal_attendances_path, notice: t(:invalid_attendance)
@@ -38,13 +41,6 @@ class MealAttendancesController < ApplicationController
 
   def edit; end
 
-  def update
-    if @MealAttendance.update(mealAttendance_params)
-      redirect_to meal_attendances_path(@MealAttendances), status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
 
   def destroy
     @MealAttendance.destroy
