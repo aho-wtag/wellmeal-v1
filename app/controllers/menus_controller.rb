@@ -13,15 +13,14 @@ class MenusController < ApplicationController
   def new
     @menu = Menu.new
     @dishes = Dish.all
-  end
-
+    end
   def create
     @menu = Menu.new(menu_params)
     @menu.user_id= current_user.id
     if @menu.save
       redirect_to menus_path(@menu), notice: t(:created)
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_menu_path, notice: t(:missing_field)
     end
   end
 

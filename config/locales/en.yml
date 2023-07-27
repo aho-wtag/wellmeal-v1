@@ -39,3 +39,4 @@ en:
   no_access: "Access Denied"
   not_found: "No page found at that address"
   updated: "Successfully updated"
+  missing_field: "Please fill all the fields"
