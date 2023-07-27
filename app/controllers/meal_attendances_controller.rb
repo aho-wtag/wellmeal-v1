@@ -21,12 +21,12 @@ class MealAttendancesController < ApplicationController
 
   def new
     @MealAttendance = MealAttendance.new
-    @users = User.all
   end
 
   def create
     @MealAttendance = MealAttendance.new(meal_attendance_params)
     @MealAttendance.user_id = current_user.id
+    @MealAttendance.meal_date= Date.today
     if @MealAttendance.save
       redirect_to menus_path, notice: t(:created)
     else

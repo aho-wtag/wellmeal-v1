@@ -1,4 +1,5 @@
-<h1>Meal Attendance</h1>
+<div  style="text-align: center">
+<h1>Meal Attendance of <%= Date.today.strftime("%a, %e %b %Y") %></h1>
 
-<%= render 'form', mealAttendance: @MealAttendance%>
-<br>
+<%= render 'form', mealAttendance: @MealAttendance, class:"btn btn-primary"%>
+</div>
