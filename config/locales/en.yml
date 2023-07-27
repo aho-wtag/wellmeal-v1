@@ -38,3 +38,4 @@ en:
   invalid_attendance: "cant give empty date or past attendance"
   no_access: "Access Denied"
   not_found: "No page found at that address"
+  updated: "Successfully updated"

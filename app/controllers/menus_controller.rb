@@ -34,7 +34,7 @@ class MenusController < ApplicationController
 
   def update
     if @menu.update(menu_params)
-      redirect_to menus_path(@dish), status: :see_other
+      redirect_to menus_path(@dish), status: :see_other, notice: t(:updated)
     else
       render :edit, status: :unprocessable_entity
     end
