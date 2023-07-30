@@ -1,5 +1,3 @@
-
-
 class MealAttendancesController < ApplicationController
   before_action :find_attendance_by_id, only: %i[edit update show destroy]
   before_action :authenticate_user!
@@ -21,12 +19,16 @@ class MealAttendancesController < ApplicationController
 
   def new
     @MealAttendance = MealAttendance.new
+    @lunch_status=MealAttendance.where(user_id: current_user.id, meal_type: 0, meal_date: Date.today).exists?
+    @snack_status=MealAttendance.where(user_id: current_user.id, meal_type: 1, meal_date: Date.today).exists?
   end
 
   def create
     @MealAttendance = MealAttendance.new(meal_attendance_params)
     @MealAttendance.user_id = current_user.id
     @MealAttendance.meal_date= Date.today
+
+
     user_attendance = MealAttendance.where(user_id: current_user.id, meal_type: @MealAttendance.meal_type, meal_date: Date.today).exists?
     if user_attendance
       redirect_to meal_attendances_path, notice: t(:duplicate_attendance)

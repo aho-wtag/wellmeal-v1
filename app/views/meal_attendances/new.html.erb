@@ -1,5 +1,19 @@
 <div  style="text-align: center">
 <h1>Meal Attendance of <%= Date.today.strftime("%a, %e %b %Y") %></h1>
+  <%if @lunch_status %>
+    <span class="btn btn-success btn-lg">Lunch Attendance given</span>
+<%else %>
+    <span class="btn btn-danger btn-lg">Lunch Attendance not given</span>
+<%end %>
 
-<%= render 'form', mealAttendance: @MealAttendance, class:"btn btn-primary"%>
+  <%if @snack_status %>
+    <span class="btn btn-success btn-lg">Snack Attendance given</span>
+<%else %>
+    <span class="btn btn-danger btn-lg">Snack Attendance not given</span>
+  <%end %>
+
+<div style="margin-top: 100px;">
+  <%= render 'form', mealAttendance: @MealAttendance, class:"btn btn-primary"%>
+</div>
+
 </div>
