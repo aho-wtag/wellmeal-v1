@@ -12,6 +12,16 @@ class User < ApplicationRecord
   has_many :meal_attendances, dependent: :destroy
   has_many :notices, dependent: :destroy
 
+    has_many :access_grants,
+             class_name: 'Doorkeeper::AccessGrant',
+             foreign_key: :resource_owner_id,
+             dependent: :delete_all # or :destroy if you need callbacks
+
+    has_many :access_tokens,
+             class_name: 'Doorkeeper::AccessToken',
+             foreign_key: :resource_owner_id,
+             dependent: :delete_all # or :destroy if you need callbacks
+
   enum role: { user: 0, admin: 1 , sup_admin: 2}
   validates :email, :phone, :role, presence: true
   validates :first_name, :last_name, presence: true, format: { with: /\A[A-Za-z]+\z/ }
@@ -19,4 +29,10 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates_plausible_phone :phone, presence: true
   trimmed_fields :first_name, :last_name,:email, :phone
+
+
+  def self.authenticate(email, password)
+    user = User.find_for_authentication(email:)
+    user&.valid_password?(password) ? user : nil
+  end
 end

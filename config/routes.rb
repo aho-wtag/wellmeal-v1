@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  use_doorkeeper
   devise_for :users
   resources :users
   resources :dishes
@@ -15,7 +16,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   # get '*path' => redirect('/')
-  get '*all', to: 'application#index', constraints: lambda { |req|
-    req.path.exclude? 'rails/active_storage'
-  }
+  # get '*all', to: 'application#index', constraints: lambda { |req|
+  #   req.path.exclude? 'rails/active_storage'
+  #   req.path.exclude? 'api/v1'
+  # }
+
+  mount Base => '/'
 end

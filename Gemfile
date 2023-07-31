@@ -83,3 +83,10 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+
+#API related gems
+gem "grape", "~> 1.7"
+gem 'grape-entity'
+gem 'grape_on_rails_routes'
+gem "doorkeeper", "~> 5.6"
