@@ -6,10 +6,19 @@
 
 <%end %>
 <h1>Today's Lunch </h1>
+  <%if @today_lunch_menu.length()!=0%>
   <%= render 'menulist', menulist: @today_lunch_menu%>
+    <%else%>
+    <p> NO Lunch Menu added yet</p>
+  <%end %>
+
 
 <h1>Today's Snack </h1>
-  <%= render 'menulist', menulist: @today_snack_menu%>
+  <%if @today_snack_menu.length()!=0%>
+    <%= render 'menulist', menulist: @today_snack_menu%>
+  <%else%>
+    <p> NO Snacks Menu added yet</p>
+  <%end %>
 
 <%if current_user.admin? or current_user.sup_admin? %>
 <h1>All Menu</h1>
