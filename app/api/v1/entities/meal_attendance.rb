@@ -1,6 +1,6 @@
 module V1
   module Entities
-    class MealAttendances < Grape::Entity
+    class MealAttendance < Grape::Entity
       expose :id
       expose :meal_type
       expose :meal_date
