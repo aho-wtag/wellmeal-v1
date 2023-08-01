@@ -21,6 +21,8 @@ class MenusController < ApplicationController
     if menu_already_exists?
       # flash[:alert] = 'Menu with the same meal type and date already exists.'
       redirect_to new_menu_path, notice: t(:duplicate_menu)
+    elsif @menu.dish.length()==0
+      redirect_to new_menu_path, notice: t(:no_dish)
     elsif  @menu.save
       redirect_to menus_path(@menu), notice: t(:created)
     else

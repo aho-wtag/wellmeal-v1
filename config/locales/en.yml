@@ -42,3 +42,4 @@ en:
   missing_field: "Please fill all the fields"
   duplicate_menu: "Menu already created for today"
   duplicate_attendance: "already attendance given for today. Try Tommorrow"
+  no_dish: "Minimum One Dish is required to create a menu"
