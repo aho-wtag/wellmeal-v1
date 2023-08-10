@@ -4,6 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Dishes', type: :request do
   let!(:dish) { FactoryBot.create(:dish) }
+  let!(:user) { FactoryBot.create(:user, :admin) }
+  before(:each) do
+    sign_in(user)
+  end
   describe 'GET /index' do
     it 'returns http success' do
       get '/dishes'

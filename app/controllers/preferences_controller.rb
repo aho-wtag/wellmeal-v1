@@ -2,6 +2,8 @@
 
 class PreferencesController < ApplicationController
   before_action :find_menu_by_id, only: %i[edit update show destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
   def index
     @preferences = Preference.all
   end
@@ -13,8 +15,9 @@ class PreferencesController < ApplicationController
 
   def create
     @preference = Preference.new(preference_params)
+    @preference.user_id=current_user.id
     if @preference.save
-      redirect_to preferences_path(@preference), notice: 'Successfully created'
+      redirect_to preferences_path(@preference), notice: t(:created)
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,14 +37,14 @@ class PreferencesController < ApplicationController
 
   def destroy
     @preference.destroy
-    flash[:notice] = 'Dish was successfully deleted'
+    flash[:notice] = t(:deleted)
     redirect_to preferences_path, status: :see_other
   end
 
   private
 
   def preference_params
-    params.require(:preference).permit(:restricted_food, :user_id)
+    params.require(:preference).permit(:restricted_food)
   end
 
   def find_menu_by_id

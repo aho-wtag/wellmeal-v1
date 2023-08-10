@@ -10,84 +10,120 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_626_060_839) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_19_032340) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'dishes', force: :cascade do |t|
-    t.string 'name', null: false
-    t.string 'ingredients', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table 'dishes_menus', id: false, force: :cascade do |t|
-    t.bigint 'dish_id', null: false
-    t.bigint 'menu_id', null: false
-    t.index %w[dish_id menu_id], name: 'index_dishes_menus_on_dish_id_and_menu_id'
-    t.index %w[menu_id dish_id], name: 'index_dishes_menus_on_menu_id_and_dish_id'
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table 'meal_attendances', force: :cascade do |t|
-    t.integer 'meal_type', null: false
-    t.date 'meal_date', null: false
-    t.bigint 'user_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_meal_attendances_on_user_id'
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table 'menus', force: :cascade do |t|
-    t.integer 'meal_type', null: false
-    t.date 'meal_date', null: false
-    t.bigint 'user_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_menus_on_user_id'
+  create_table "dishes", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ingredients", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'notices', force: :cascade do |t|
-    t.text 'notice_title'
-    t.text 'notice_body', null: false
-    t.bigint 'user_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_notices_on_user_id'
+  create_table "dishes_menus", id: false, force: :cascade do |t|
+    t.bigint "dish_id", null: false
+    t.bigint "menu_id", null: false
+    t.index ["dish_id", "menu_id"], name: "index_dishes_menus_on_dish_id_and_menu_id"
+    t.index ["menu_id", "dish_id"], name: "index_dishes_menus_on_menu_id_and_dish_id"
   end
 
-  create_table 'preferences', force: :cascade do |t|
-    t.string 'restricted_food', null: false
-    t.bigint 'user_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_preferences_on_user_id'
+  create_table "meal_attendances", force: :cascade do |t|
+    t.integer "meal_type", null: false
+    t.date "meal_date", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_meal_attendances_on_user_id"
   end
 
-  create_table 'reviews', force: :cascade do |t|
-    t.text 'review_body', null: false
-    t.integer 'rating', null: false
-    t.bigint 'user_id', null: false
-    t.bigint 'menu_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['menu_id'], name: 'index_reviews_on_menu_id'
-    t.index ['user_id'], name: 'index_reviews_on_user_id'
+  create_table "menus", force: :cascade do |t|
+    t.integer "meal_type", null: false
+    t.date "meal_date", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_menus_on_user_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'first_name', null: false
-    t.string 'last_name', null: false
-    t.string 'email', null: false
-    t.string 'phone', null: false
-    t.integer 'role', default: 0, null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "notices", force: :cascade do |t|
+    t.text "notice_title"
+    t.text "notice_body", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
-  add_foreign_key 'meal_attendances', 'users'
-  add_foreign_key 'menus', 'users'
-  add_foreign_key 'notices', 'users'
-  add_foreign_key 'preferences', 'users'
-  add_foreign_key 'reviews', 'menus'
-  add_foreign_key 'reviews', 'users'
+  create_table "preferences", force: :cascade do |t|
+    t.string "restricted_food", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_preferences_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "review_body", null: false
+    t.integer "rating", null: false
+    t.bigint "user_id", null: false
+    t.bigint "menu_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_id"], name: "index_reviews_on_menu_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "phone", null: false
+    t.integer "role", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "meal_attendances", "users"
+  add_foreign_key "menus", "users"
+  add_foreign_key "notices", "users"
+  add_foreign_key "preferences", "users"
+  add_foreign_key "reviews", "menus"
+  add_foreign_key "reviews", "users"
 end

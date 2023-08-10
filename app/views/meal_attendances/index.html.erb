@@ -1,27 +1,70 @@
-<h1>This is the menu index page</h1>
+<div style="margin: 60px; text-align: center">
+  <h1>MEAL ATTENDANCE PAGE</h1>
 
-<p>
-  <%= link_to 'give food attendance', new_meal_attendance_path %>
-</p>
+  <p>
+    <%= link_to 'give food attendance', new_meal_attendance_path , class: "btn btn-danger btn-lg", style: "margin-left: 30px;"%>
+  </p>
+  <% if current_user.admin? or current_user.sup_admin?%>
+    <div >
+      <h1>Today's Lunch Count</h1>
+      <h2 style="margin-left: 100px"><%=@today_lunch_count %></h2>
+    </div>
 
-<table>
-  <tr>
-    <th>Date</th>
-    <th>Name</th>
-    <th>Meal Type</th>
-
-  </tr>
-  <% @MealAttendances.each do |meal| %>
-    <tr>
-      <td><%= meal.meal_date %></td>
-      <td><%= meal.user.first_name %></td>
-      <td><%= meal.meal_type %></td>
+    <div >
+      <h1>Today's Snack Count</h1>
+      <h2 style="margin-left: 100px"><%=@today_snack_count %></h2>
+    </div>
 
 
 
-      <td> <%= link_to "delete", meal_attendance_path(meal), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>
-    </tr>
+    <%= form_tag meal_attendances_path, method: :get do %>
+      <div class="field">
+        <%= label_tag :search, "Search by Name" %>
+        <% if params[:search] %>
+          <%= text_field_tag :search,params[:search]%>
+        <%else %>
+          <%= text_field_tag :search%>
+        <%end %>
 
+      </div>
+
+      <div class="field">
+        <%= label_tag :category, "Category" %>
+        <%= select_tag :category, options_for_select([["Lunch and Snack", ''],["lunch", "0"], ["snack", "1"]] ,params[:category] ) %>
+      </div>
+
+      <div class="field">
+        <%= label_tag :search_date, "date" %>
+        <% if params[:search_date] %>
+          <%= date_field_tag :search_date,params[:search_date]%>
+        <%else %>
+          <%= date_field_tag :search_date %>
+        <%end %>
+
+        <br>
+        <%= submit_tag "Search" %>
+    <% end %>
+    </div>
+
+    <table class="table table-striped">
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Meal Type</th>
+
+      </tr>
+      <% @MealAttendances.each do |meal| %>
+        <tr>
+          <td><%= meal.meal_date %></td>
+          <td><%= meal.user.first_name %></td>
+          <td><%= meal.meal_type %></td>
+
+
+
+          <td> <%= link_to "delete", meal_attendance_path(meal),class: "btn btn-danger", data: { method: :delete, confirm: "Are you sure?"} %> </td>
+        </tr>
+      <%end %>
 
   <% end %>
-</table>
+  </table>
+</div>

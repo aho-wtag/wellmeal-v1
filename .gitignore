@@ -29,3 +29,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+Gemfile.lock
+app/controllers/.DS_Store
+.idea/wellmeal-v1.iml

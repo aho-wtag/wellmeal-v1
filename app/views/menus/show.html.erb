@@ -1,22 +1,31 @@
-<h1> <%= @menu.meal_date %></h1>
+<div style="margin: 60px; text-align: center">
+<h1> <%= @menu.meal_date %> Menu</h1>
 <p><b> Meal Type: </b> <%=@menu.meal_type %></p>
 <ul>
   <% @menu.dish.each do |d| %>
-    <li><%= d.name %></li>
+
+
+    <div><img src="<%= url_for(d.image) %>" width="600" height="400" display="flex">
+      <li><%= d.name %></li>
+    </div>
+
   <% end %>
 </ul>
 
+
+
+
 <h3>Reviews</h3>
-<hr>
+</div>
+
 <% @reviews.each do |review| %>
-  <p> <%=review.user.first_name %> saying</p>
+  <div class="col-md-8">
+    <p> <b><%=review.user.first_name %></b> saying</p>
   <p> <%=review.review_body %> </p>
-  <p>Rating: <%=  review.rating %> </p>
-  <%= link_to "delete", review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  <hr>
-
+  <p>Rating: <%= display_star_rating(review.rating) %> </p>
+  <% if can? :destroy, review%>
+  <%= link_to "delete", review_path(review), data: { method: :delete, confirm: "Are you sure?"}, class:"btn btn-danger" %>
+  <%end %>
+  </div>
 <% end %>
-
-
-<%= link_to "Menu index", menus_path %>
-<%= link_to "Write a Review", new_review_path(@menu.id) %>
+<%= render partial: 'reviews/form'%>

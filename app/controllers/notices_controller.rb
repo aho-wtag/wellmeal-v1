@@ -2,8 +2,10 @@
 
 class NoticesController < ApplicationController
   before_action :find_menu_by_id, only: %i[edit update show destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
   def index
-    @notices = Notice.all
+    @notices = Notice.order(created_at: :desc)
   end
 
   def new
@@ -13,8 +15,9 @@ class NoticesController < ApplicationController
 
   def create
     @notice = Notice.new(notice_params)
+    @notice.user_id=current_user.id
     if @notice.save
-      redirect_to notices_path(@notice), notice: 'Successfully created'
+      redirect_to notices_path(@notice), notice: t(:created)
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,14 +37,14 @@ class NoticesController < ApplicationController
 
   def destroy
     @notice.destroy
-    flash[:notice] = 'Dish was successfully deleted'
+    flash[:notice] = t(:deleted)
     redirect_to notices_path, status: :see_other
   end
 
   private
 
   def notice_params
-    params.require(:notice).permit(:notice_title, :notice_body, :user_id)
+    params.require(:notice).permit(:notice_title, :notice_body)
   end
 
   def find_menu_by_id

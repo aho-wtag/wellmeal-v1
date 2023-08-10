@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>WellmealV1</title>
+<head>
+  <title>WellmealV1</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,8 +9,22 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+<body>
 
-  <body>
-    <%= yield %>
-  </body>
+<% if user_signed_in? %>
+  <%= render 'layouts/navigation' %>
+<% end %>
+
+<%if notice.instance_of? String%>
+  <p class="alert alert-danger"><%= notice %></p>
+<%end %>
+
+
+<%if alert.instance_of? String%>
+  <p class="alert alert-success"><%= alert %></p>
+<%end %>
+
+<%= yield %>
+</body>
+
 </html>

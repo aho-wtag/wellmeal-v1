@@ -2,6 +2,8 @@
 
 class DishesController < ApplicationController
   before_action :find_dish_by_id, only: %i[edit update show destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
   def index
     @dishes = Dish.all
   end
@@ -13,7 +15,7 @@ class DishesController < ApplicationController
   def create
     @dish = Dish.new(dish_params)
     if @dish.save
-      redirect_to dishes_path(@dish), notice: 'Successfully created'
+      redirect_to dishes_path(@dish), notice: t(:created)
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,14 +35,14 @@ class DishesController < ApplicationController
 
   def destroy
     @dish.destroy
-    flash[:notice] = 'Dish was successfully deleted'
+    flash[:notice] = t(:deleted)
     redirect_to dishes_path, status: :see_other
   end
 
   private
 
   def dish_params
-    params.require(:dish).permit(:name, :ingredients)
+    params.require(:dish).permit(:name, :ingredients, :image)
   end
 
   def find_dish_by_id

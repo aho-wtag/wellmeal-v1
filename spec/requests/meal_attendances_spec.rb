@@ -4,6 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'MealAttendances', type: :request do
   let!(:meal_attendance) { FactoryBot.create(:meal_attendance, :lunch) }
+  let!(:user) { FactoryBot.create(:user, :admin) }
+  before(:each) do
+    sign_in(user)
+  end
   describe 'GET /index' do
     it 'returns http success' do
       get '/meal_attendances'

@@ -1,26 +1,32 @@
-<h1>This is the NOTICE index page</h1>
+<div style="margin: 50px;">
 
-<p>
-  <%= link_to 'new notice', new_notice_path %>
-</p>
 
-<table>
+<h1>Notices</h1>
+
+<%if can? :manage, Notice%>
+  <%= link_to 'new notice', new_notice_path, class:"btn btn-success"  %>
+  <%end %>
+
+<table class="table">
   <tr>
-    <th>User ID</th>
+    <th>Date</th>
     <th>Notice Title</th>
     <th>Notice Body</th>
   </tr>
   <% @notices.each do |notice| %>
     <tr>
-      <td><%= notice.user_id %></td>
+      <td><%= notice.created_at %></td>
       <td><%= notice.notice_title %></td>
       <td><%= notice.notice_body %></td>
+      <td><%=link_to'show', notice_path(notice), class:"btn btn-warning" %></td>
+      <%if can? :manage, notice%>
 
-      <td><%=link_to'edit', edit_notice_path(notice) %></td>
-      <td><%=link_to'show', notice_path(notice) %></td>
-      <td> <%= link_to "delete", notice_path(notice), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>
+        <td><%=link_to'edit', edit_notice_path(notice),class:"btn btn-primary"  %></td>
+      <td> <%= link_to "delete", notice_path(notice),class:"btn btn-danger" ,  data: { method: :delete, confirm: "Are you sure?"} %> </td>
+  <%end %>
     </tr>
 
 
   <% end %>
 </table>
+</div>

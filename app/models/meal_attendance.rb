@@ -9,8 +9,9 @@ class MealAttendance < ApplicationRecord
   private
 
   def meal_date_cannot_be_past
-    return unless meal_date.present? && meal_date < Date.today
 
-    errors.add(:meal_date, t(:future_date))
+    if meal_date.present? && meal_date < Date.today
+      errors.add(:meal_date,I18n.t(:future_date))
+    end
   end
 end
